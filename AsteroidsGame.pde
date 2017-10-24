@@ -1,10 +1,26 @@
-//your variable declarations here
+Spaceship player = new Spaceship();
+
 public void setup() 
 {
-  //your code here
+  size(900, 600);
+  background(0);
 }
 public void draw() 
 {
-  //your code here
+  background(0);
+  player.move();
+  player.show();
 }
 
+public void keyPressed() {
+  if (key == 'a')
+    player.turn(-3);
+  if (key == 'd')
+    player.turn(3);
+  if (key == 'w')
+    player.accelerate(.1);
+  if (key == ' ') {
+    System.out.println("hyperspace");
+  }
+    
+}
