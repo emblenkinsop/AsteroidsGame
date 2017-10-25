@@ -20,7 +20,7 @@ public void keyPressed() {
   if (key == 'w')
     player.accelerate(.1);
   if (key == ' ') {
-    System.out.println("hyperspace");
+    player.hyperspace();
   }
     
 }

@@ -1,4 +1,9 @@
-class Stars //note that this class does NOT extend Floater
+class Stars
 {
-  //your code here
+  int myX, myY;
+  
+  Stars (int x, int y) {
+    myX = x;
+    myY = y;
+  }
 }

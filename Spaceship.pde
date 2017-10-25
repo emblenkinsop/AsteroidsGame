@@ -13,6 +13,13 @@ class Spaceship extends Floater
     
   }
   
+  public void hyperspace() {
+    myCenterX = (int)(Math.random()*900);
+    myCenterY = (int)(Math.random()*600);
+    myPointDirection = Math.random()*360;
+    myDirectionX = myDirectionY = 0;
+  }
+  
   //accesors and mutators  
   public void setX(int x) {myCenterX = x;}
   public int getX() {return (int)myCenterX;} 
@@ -24,12 +31,5 @@ class Spaceship extends Floater
   public double getDirectionY() {return myDirectionY;}
   public void setPointDirection(int degrees) {myPointDirection = degrees;}
   public double getPointDirection() {return myPointDirection;}
-  
-  /*int[] xCorners = new int[4];
-  int[] yCorners = new int[4];
-  int[] xS = {-2,-8,16,-8};
-  int[] yS = {0,8,0,8};
-  int[] xCorners = xS;
-  int[] yCorners = yS;*/
   
 }
