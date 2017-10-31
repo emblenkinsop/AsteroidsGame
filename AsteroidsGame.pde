@@ -1,6 +1,6 @@
 Spaceship player = new Spaceship();
 Stars[] backStars = new Stars[100];
-Asteroid test = new Asteroid();
+Asteroid[] asteroids = new Asteroid[20];
 
 public void setup() 
 {
@@ -9,14 +9,18 @@ public void setup()
   for (int i = 0; i<backStars.length; i++) {
     backStars[i] = new Stars((int)(Math.random()*900), (int)(Math.random()*600));
   }
+  for (int i = 0; i<asteroids.length; i++) {
+    asteroids[i] = new Asteroid();
+    asteroids[i].accelerate(.01);
+  }
 }
 public void draw() 
 {
   background(0);
-  test.show();
   player.move();
   player.show();
   for (int i = 0; i<backStars.length; i++) {backStars[i].show();}
+  for (int i = 0; i<asteroids.length; i++) {asteroids[i].move(); asteroids[i].show();}
 }
 
 public void keyPressed() {
