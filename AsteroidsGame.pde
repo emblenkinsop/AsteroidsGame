@@ -7,7 +7,7 @@ public void setup()
   size(900, 600);
   background(0);
   for (int i = 0; i<backStars.length; i++) {
-    backStars[i] = new Stars((int)(Math.random()*900), (int)(Math.random()*600));
+    backStars[i] = new Stars();
   }
   for (int i = 0; i<asteroids.length; i++) {
     asteroids[i] = new Asteroid();
@@ -31,7 +31,12 @@ public void keyPressed() {
   if (key == 'w')
     player.accelerate(.1);
   if (key == ' ') {
-    player.hyperspace();
+    //player.hyperspace();
+    player.setX((int)(Math.random()*900));
+    player.setY((int)(Math.random()*600));
+    player.setPointDirection((int)(Math.random()*360));
+    player.setDirectionX(0);
+    player.setDirectionY(0);
   }
     
 }
