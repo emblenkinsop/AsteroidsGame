@@ -1,7 +1,8 @@
 Spaceship player = new Spaceship();
 Stars[] backStars = new Stars[100];
-//Asteroid[] asteroids = new Asteroid[20];
+//Bullet testBullet = new Bullet(player);
 ArrayList <Asteroid> backAsteroids = new ArrayList <Asteroid>();
+ArrayList <Bullet> playerBullets = new ArrayList <Bullet>();
 
 public void setup() 
 {
@@ -14,8 +15,6 @@ public void setup()
     Asteroid anAsteroid = new Asteroid();
     backAsteroids.add(anAsteroid);
     anAsteroid.accelerate(.01);
-    //asteroids[i] = new Asteroid();
-    //asteroids[i].accelerate(.01);
   }
 }
 public void draw() 
@@ -23,7 +22,15 @@ public void draw()
   background(0);
   player.move();
   player.show();
-  for (int i = 0; i<backStars.length; i++) {backStars[i].show();}
+  //testBullet.show();
+  //testBullet.move();
+  for (Stars tempStar : backStars) {tempStar.show();}
+  for (int i = 0; i<playerBullets.size(); i++) {
+    playerBullets.get(i).move();
+    playerBullets.get(i).show();
+    System.out.println(playerBullets.get(i).getX());
+    if(playerBullets.get(i).getX()>width || playerBullets.get(i).getX()<0 || playerBullets.get(i).getY() >height || playerBullets.get(i).getY() < 0) {playerBullets.remove(i); System.out.println(i);}
+  }
   for (int i = 0; i<backAsteroids.size(); i++) {
     if (dist(backAsteroids.get(i).getX(), backAsteroids.get(i).getY(), player.getX(), player.getY())<20)
         backAsteroids.remove(i);
@@ -41,8 +48,10 @@ public void keyPressed() {
     player.turn(3);
   if (key == 'w')
     player.accelerate(.1);
+  if (key == 's') {
+    playerBullets.add(new Bullet(player));
+  }
   if (key == ' ') {
-    //player.hyperspace();
     player.setX((int)(Math.random()*900));
     player.setY((int)(Math.random()*600));
     player.setPointDirection((int)(Math.random()*360));
