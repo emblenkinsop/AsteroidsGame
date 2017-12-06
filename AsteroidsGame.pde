@@ -3,6 +3,7 @@ Stars[] backStars = new Stars[100];
 //Bullet testBullet = new Bullet(player);
 ArrayList <Asteroid> backAsteroids = new ArrayList <Asteroid>();
 ArrayList <Bullet> playerBullets = new ArrayList <Bullet>();
+int tick;
 
 public void setup() 
 {
@@ -16,6 +17,7 @@ public void setup()
     backAsteroids.add(anAsteroid);
     anAsteroid.accelerate(.01);
   }
+  tick = 0;
 }
 public void draw() 
 {
@@ -29,7 +31,7 @@ public void draw()
     playerBullets.get(i).move();
     playerBullets.get(i).show();
     System.out.println(playerBullets.get(i).getX());
-    if(playerBullets.get(i).getX()>width || playerBullets.get(i).getX()<0 || playerBullets.get(i).getY() >height || playerBullets.get(i).getY() < 0) {playerBullets.remove(i); System.out.println(i);}
+    if(playerBullets.get(i).getX()>width || playerBullets.get(i).getX()<0 || playerBullets.get(i).getY()>height || playerBullets.get(i).getY() < 0) {playerBullets.remove(i); System.out.println(i);}
   }
   for (int i = 0; i<backAsteroids.size(); i++) {
     if (dist(backAsteroids.get(i).getX(), backAsteroids.get(i).getY(), player.getX(), player.getY())<20)
@@ -39,6 +41,16 @@ public void draw()
     backAsteroids.get(i).show();
     }
   }
+  for (int j = 0; j<playerBullets.size(); j++) {
+    for (int i = 0; i<backAsteroids.size(); i++) {
+      if (dist(playerBullets.get(j).getX(), playerBullets.get(j).getY(), backAsteroids.get(i).getX(), backAsteroids.get(i).getY())<20) {
+        playerBullets.remove(j);
+        backAsteroids.remove(i);
+        break;
+      }
+    }
+  }
+  tick++;
 }
 
 public void keyPressed() {
@@ -48,8 +60,9 @@ public void keyPressed() {
     player.turn(3);
   if (key == 'w')
     player.accelerate(.1);
-  if (key == 's') {
+  if (key == 's' && tick>20) {
     playerBullets.add(new Bullet(player));
+    tick = 0;
   }
   if (key == ' ') {
     player.setX((int)(Math.random()*900));
