@@ -60,11 +60,11 @@ public void keyPressed() {
     player.turn(3);
   if (key == 'w')
     player.accelerate(.1);
-  if (key == 's' && tick>20) {
+  if (key == ' ' && tick>20) {
     playerBullets.add(new Bullet(player));
     tick = 0;
   }
-  if (key == ' ') {
+  if (key == 's') {
     player.setX((int)(Math.random()*900));
     player.setY((int)(Math.random()*600));
     player.setPointDirection((int)(Math.random()*360));
