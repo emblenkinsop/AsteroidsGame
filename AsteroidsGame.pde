@@ -35,10 +35,8 @@ public void draw()
     for (int i = 0; i<playerBullets.size(); i++) {
       playerBullets.get(i).move();
       playerBullets.get(i).show();
-      System.out.println(playerBullets.get(i).getX());
       if (playerBullets.get(i).getX()>width || playerBullets.get(i).getX()<0 || playerBullets.get(i).getY()>height || playerBullets.get(i).getY() < 0) {
         playerBullets.remove(i); 
-        System.out.println(i);
       }
     }
     for (int i = 0; i< healthBar; i++) {
