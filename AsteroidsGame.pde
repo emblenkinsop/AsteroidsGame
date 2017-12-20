@@ -90,7 +90,7 @@ public void keyPressed() {
 }
 
 public void reset() {
-  clear();
+  background(0);
   fill(255);
   textSize(50);
   if (backAsteroids.size()==0)
